@@ -1,0 +1,62 @@
+ public ArchivoPDFPlantilla ProcesarArchivosPDF(string ClaveArchivo)
+        {      
+            ArchivoPDFPlantilla ArchivoPDF = new ArchivoPDFPlantilla();
+            try
+            {
+                //string TempPath = @"c:\temp\pdf\";
+                string TempPath = HttpContext.Current.Server.MapPath("~/pdf/");
+                string FilePath = string.Empty;
+
+                switch (ClaveArchivo)
+                {
+                    case "PlanRetiro-Guia.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Guia de Plan Retiro";
+                        FilePath = TempPath + "PlanRetiro-Guia.pdf";
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+                        //System.Diagnostics.Process.Start(FilePath);
+                        
+                        break;
+                    case "SeguroGMM-Guia.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Guia de Seguro Gastos Médicos Mayores";
+                        FilePath = TempPath + "SeguroGMM-Guia.pdf";
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+
+                        break;
+                    case "SeguroGMM-Solicitud.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Solicitud de Seguro Gastos Médicos Mayores";
+                        FilePath = TempPath + "SeguroGMM-Solicitud.pdf";
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+
+                        break;
+                    case "SeguroAuto-FormatoAlta.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Formato de Alta de Seguro Auto";
+                        FilePath = TempPath + ClaveArchivo;
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+
+                        break;
+                    case "SeguroAuto-FormatoBaja.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Formato de Baja de Seguro Auto";
+                        FilePath = TempPath + ClaveArchivo;
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+
+                        break;
+                    case "SeguroAuto-FormatoDescuento.pdf":
+                        ArchivoPDF.ClaveArchivo = ClaveArchivo;
+                        ArchivoPDF.NombreArchivo = "Formato de Descuento de Seguro Auto";
+                        FilePath = TempPath + ClaveArchivo;
+                        ArchivoPDF.ArchivoPDF = File.ReadAllBytes(FilePath);
+
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return ArchivoPDF;
+        }
